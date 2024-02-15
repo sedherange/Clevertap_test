@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Clevertap Test</title>
+
+</head>
+<body>
+
+  <button id="trackButton">Proceed</button>
+
+<div class="btn">CLOSE</div>
+<script>
+var btn = document.querySelector('.btn');
+var wrapper = window.parent.document.getElementById('wizParDiv0');
+btn.addEventListener('click', closePopUp);
+function closePopUp()
+{ wrapper.remove(); }
+</script>
+
+<script>
+document.getElementById("trackButton").addEventListener("click", function() {
+   
+    var userName = "Shreyas Dherange";
+    var emailId = "Shreyas.dherange@spit.ac.in";
+
+   
+    var productId = 1;
+    var productName = "Clevertap";
+
+
+    var eventProperties = {
+        productId: productId,
+        productName: productName,
+        userName: userName,
+        emailId: emailId
+    };
+
+    pushProductViewedEvent(eventProperties);
+});
+
+function pushProductViewedEvent(properties) {
+    console.log("Product_viewed event pushed with properties:", properties);
+
+    clevertap.event.push("Product_viewed", properties);
+}
+
+var clevertap = {event:[], profile:[], account:[], onUserLogin:[], notifications:[], privacy:[]};
+clevertap.account.push({"id": "TEST-WKZ-K79-7W7Z"}); 
+clevertap.privacy.push({optOut: false});
+clevertap.privacy.push({useIP: true});
+
+(function () {
+    var wzrk = document.createElement('script');
+    wzrk.type = 'text/javascript';
+    wzrk.async = true;
+    wzrk.src = ('https:' == document.location.protocol ? 'https://d2r1yp2w7bby2u.cloudfront.net' : 'http://static.clevertap.com') + '/js/clevertap.min.js';        
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wzrk, s);
+})();
+</script>
+
+</body>
+</html>
